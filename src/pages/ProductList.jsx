@@ -1,15 +1,16 @@
 import React, {useState, useEffect}  from 'react'
 import { Icon, Menu, Table } from 'semantic-ui-react'
 import ProductService from '../services/productService'
+import { Link } from 'react-router-dom';
 
 export default function ProductList() {
   //Lifecycle hook
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-   let productService = new ProductService()
-   productService.getProducts().then().catch(result => setProducts(result.data.data))
-  })
+    let productService = new ProductService();
+    productService.getProducts().then(result => setProducts(result.data.products)).catch(error => (console.error("Error fetching products:", error)))
+}, [])
 
   return (
     <div>      
@@ -23,16 +24,15 @@ export default function ProductList() {
         <Table.HeaderCell>Kategori</Table.HeaderCell>
       </Table.Row>
     </Table.Header>
-
     <Table.Body>
       {
         products.map(product => (
         <Table.Row key={product.id}>
-          <Table.Cell>{product.productName}</Table.Cell>
-          <Table.Cell>{product.UnitPrice}</Table.Cell>
-          <Table.Cell>{product.UnitsInStock}</Table.Cell>
-          <Table.Cell>{product.quantitPerUnit}</Table.Cell>
-          <Table.Cell>{product.Category.categoryName}</Table.Cell>
+          <Table.Cell><Link to={`/products/${product.id}`}>{product.title}</Link></Table.Cell>
+          <Table.Cell>{product.price}</Table.Cell>
+          <Table.Cell>{product.stock}</Table.Cell>
+          <Table.Cell>{product.description}</Table.Cell>
+          <Table.Cell>{product.category}</Table.Cell>
       </Table.Row>
         ))
       }
