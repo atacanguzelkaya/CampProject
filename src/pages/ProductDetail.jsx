@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { CardMeta, CardHeader, CardDescription, Button, Card, Image } from 'semantic-ui-react'
+import { Button, Card, Image } from 'semantic-ui-react'
 import ProductService from '../services/productService'
 
 export default function ProductDetail() {
@@ -9,7 +9,7 @@ export default function ProductDetail() {
     useEffect(() => {
         let productService = new ProductService()
         productService.getProductById(id).then(result => setProduct(result.data)).catch(error => (console.error("Error fetching products:", error)))
-    }, [])
+    }, [id])
 
     return (
         <>

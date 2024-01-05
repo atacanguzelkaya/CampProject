@@ -5,7 +5,7 @@ export default function SignedIn({signOut}) {
     return (
         <div>
             <MenuItem>
-                <Image avatar spaced="right" src="./public/logo192.png" />
+                <Image avatar spaced="right" src='/logo192.png' />
                 <Dropdown pointing="top left" text='Atacan'>
                     <DropdownMenu>
                         <DropdownItem text="Bilgilerim" icon="info" />
