@@ -1,5 +1,5 @@
 import { ADD_TO_CART, REMOVE_FROM_CART } from "../actions/cartActions";
-import { cartItems } from "../initialValues/cartItems"
+import { cartItems } from "../initialValues/cartItems";
 
 const initialState = {
     cartItems: cartItems
